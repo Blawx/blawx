@@ -60,11 +60,20 @@
 
     <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
         <category name="Menu" colour="#000000">
-        <button text="Clear Workspace" callbackKey="menuClear"></button>
-        <button text="Load Workspace" callbackKey="menuLoad"></button>
-        <button text="Save Workspace" callbackKey="menuSave"></button>
-        <button text="Run Blawx Code" callbackKey="menuRunCode"></button>
-        <button text="Help" callbackKey="menuHelp"></button>
+            <category name="Workspace" colour="#000000">
+                <button text="Clear Workspace" callbackKey="menuClear"></button>
+                <button text="Load Workspace" callbackKey="menuLoad"></button>
+                <button text="Save Workspace" callbackKey="menuSave"></button>
+                <button text="Run Blawx Code" callbackKey="menuRunCode"></button>
+            </category>
+            <category name="Reasoners" colour="#000000">
+                <button text="Flora-2" callbackKey=""></button>
+                <button text="s(CASP)" callbackKey=""></button>
+            </category>
+            <category name="Help" colour="#000000">
+                <button text="Help" callbackKey="menuHelp"></button>
+                <button text="About" callbackKey=""></button>
+            </category>
         </category>
         <sep></sep>
         <category name="Facts, Rules, Queries" colour="#805ba5">
