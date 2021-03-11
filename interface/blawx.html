@@ -1,6 +1,8 @@
 <head>
     <title>Blawx - Drag and Drop Legal AI</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
     <style type="text/css">
         html, body {
             height: 100%;
@@ -27,6 +29,18 @@
           width: 25%;
         }
   
+        #blawxlogo
+{
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     z-index: 100;
+     font-family: 'IBM Plex Sans', sans-serif;
+     color:rgb(74, 25, 84);
+     font-size:xx-large;
+     vertical-align:middle;
+}
+
         #blocklyArea {
             position: absolute;
             min-height: 100%;
@@ -54,8 +68,10 @@
     <script src="/blockly/blocks_compressed.js"></script>
     <script src="/blockly/msg/js/en.js"></script>
     <script src="/blockly/appengine/storage.js"></script>
-    <div id="blocklyArea"></div>
+    <div id="blocklyArea"></img>
+    </div>
     <div id="blocklyDiv" style="position: absolute"></div>
+    <div id="blawxLogo">Blawx.com</div>
     <script src="blawx-blocks.js"></script>
 
     <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
