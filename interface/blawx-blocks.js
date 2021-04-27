@@ -2768,3 +2768,20 @@ Blockly.Blocks['abducibility'] = {
         "helpUrl": "/docs/blocks/hypothesize"
       }
       )}}
+      Blockly.Blocks['constraint'] = {
+        init: function() {
+          this.jsonInit(
+      {
+        "type": "constraint",
+        "message0": "It is never true that: %1",
+        "args0": [
+          {
+            "type": "input_statement",
+            "name": "statement"
+          }
+        ],
+        "colour": 260,
+        "tooltip": "Use this to describe one statement that can never hold, or multiple statements that can never hold together.",
+        "helpUrl": "docs/blocks/constraint"
+      }
+      )}}
