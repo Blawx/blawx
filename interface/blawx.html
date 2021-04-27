@@ -86,7 +86,7 @@
         <block type="declare_type">
             <field name="type_name">default</field>
         </block>
-        <block type="category_weight"></block>
+        <!--<block type="category_weight"></block>-->
         <block type="declare_type_with_attributes"></block>
         <block type="cardinality_any">
             <field name="attribute_name">name</field>
@@ -112,37 +112,39 @@
         <block type="boolean_datatype"></block>
         <block type="number_datatype"></block>
         <block type="string_datatype"></block>
-        <block type="date_datatype"></block>
+        <!--<block type="date_datatype"></block>
         <block type="time_datatype"></block>
         <block type="datetime_datatype"></block>
-        <block type="duration_datatype"></block>
+        <block type="duration_datatype"></block>-->
     </category>
         <category name="Data Values" colour="#5ba5a5">
             <category name="Yes / No"></label>
-            <block type="boolean_value">
-            <field name="value">true</field>
-            </block>
-        </category>
-            <category name="Number"></label>
-            <block type="math_number">
-            <field name="NUM">0</field>
-            </block>
-        </category>
-            <category name="Text"></label>
-            <block type="blawx_string">
-            </block>
-        </category>
-            <category name="Dates and Times">
-            <block type="date"></block>
-            <block type="time"></block>
-            <block type="datetime"></block>
-            <block type="duration"></block>
+                <block type="boolean_value">
+                <field name="value">true</field>
+                </block>
             </category>
-        </category>
-        <category name="Data Statements" colour="#5ba5a5">
-            <category name="Number">
+            <category name="Number"></label>
+                <block type="math_number">
+                <field name="NUM">0</field>
+                </block>
                 <block type="math_operator"></block>
                 <block type="calculation"></block>
+                <block type="constraint_comparison"></block>
+            </category>
+            <category name="Text"></label>
+                <block type="blawx_string">
+                </block>
+            </category>
+            <!--<category name="Dates and Times">
+                <block type="date"></block>
+                <block type="time"></block>
+                <block type="datetime"></block>
+                <block type="duration"></block>
+            </category>-->
+        </category>
+        <!--<category name="Data Statements" colour="#5ba5a5">
+            <category name="Number">
+                
                 <block type="aggregate_statement"></block>
             </category>
             <category name="Text">
@@ -164,7 +166,7 @@
                 <block type="date_minus_date"></block>
                 <block type="time_minus_time"></block>
                 </category>
-        </category>
+        </category>-->
         <sep></sep>
         <category name="Objects" custom="NEW_OBJECTS" colour="#5b5ba5"></category>
         <category name="Known Objects" custom='KNOWN_OBJECTS' colour="#5b5ba5">
@@ -181,15 +183,15 @@
         <sep></sep>
         <category name="Logic" colour="#a55b93">
         <block type="conjunction"></block>
-        <block type="disjunction"></block>
-        <block type="negation"></block>
+        <!--<block type="disjunction"></block>-->
+        <!--<block type="negation"></block>-->
         <block type="naf_negation"></block>
-        <block type="implication">
+        <!--<block type="implication">
             <field name="implication type">implies_1</field>
         </block>
         <block type="quantifier">
             <field name="quantifier_type">exists</field>
-        </block>
+        </block>-->
         <block type="comparitor">
             <field name="comparitor">lt</field>
         </block>

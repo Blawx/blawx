@@ -2785,3 +2785,53 @@ Blockly.Blocks['abducibility'] = {
         "helpUrl": "docs/blocks/constraint"
       }
       )}}
+      Blockly.Blocks['constraint_comparison'] = {
+        init: function() {
+          this.jsonInit(
+      {
+        "type": "constraint_comparison",
+        "message0": "%1 %2 %3",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "first"
+          },
+          {
+            "type": "field_dropdown",
+            "name": "operator",
+            "options": [
+              [
+                ".<.",
+                "clt"
+              ],
+              [
+                ".>.",
+                "cgt"
+              ],
+              [
+                ".<=.",
+                "clte"
+              ],
+              [
+                ".<=.",
+                "cgte"
+              ],
+              [
+                ".=.",
+                "ce"
+              ]
+            ]
+          },
+          {
+            "type": "input_value",
+            "name": "second"
+          }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 230,
+        "tooltip": "Use this comparison between two number values as a constraint.",
+        "helpUrl": "docs/blocks/constraint_comparison"
+      }
+      )}}
