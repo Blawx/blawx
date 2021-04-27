@@ -2750,3 +2750,21 @@ Blockly.Blocks['category_weight'] = {
   "helpUrl": "/docs/blocks/category_weight"
 }
 )}}
+
+Blockly.Blocks['abducibility'] = {
+  init: function() {
+    this.jsonInit(
+      {
+        "type": "abducibility",
+        "message0": "Hypothesize about whether %1",
+        "args0": [
+          {
+            "type": "input_statement",
+            "name": "statement"
+          }
+        ],
+        "colour": 260,
+        "tooltip": "Tell the reasoner that when answering queries it can hypothesize about this statement if required.",
+        "helpUrl": "/docs/blocks/hypothesize"
+      }
+      )}}
