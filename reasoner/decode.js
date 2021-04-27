@@ -2752,6 +2752,91 @@ Blockly.Blocks['category_weight'] = {
 }
 )}}
 
+Blockly.Blocks['abducibility'] = {
+  init: function() {
+    this.jsonInit(
+      {
+        "type": "abducibility",
+        "message0": "Hypothesize about whether %1",
+        "args0": [
+          {
+            "type": "input_statement",
+            "name": "statement"
+          }
+        ],
+        "colour": 260,
+        "tooltip": "Tell the reasoner that when answering queries it can hypothesize about this statement if required.",
+        "helpUrl": "/docs/blocks/hypothesize"
+      }
+      )}}
+      Blockly.Blocks['constraint'] = {
+        init: function() {
+          this.jsonInit(
+      {
+        "type": "constraint",
+        "message0": "It is never true that: %1",
+        "args0": [
+          {
+            "type": "input_statement",
+            "name": "statement"
+          }
+        ],
+        "colour": 260,
+        "tooltip": "Use this to describe one statement that can never hold, or multiple statements that can never hold together.",
+        "helpUrl": "docs/blocks/constraint"
+      }
+      )}}
+      Blockly.Blocks['constraint_comparison'] = {
+        init: function() {
+          this.jsonInit(
+      {
+        "type": "constraint_comparison",
+        "message0": "%1 %2 %3",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "first"
+          },
+          {
+            "type": "field_dropdown",
+            "name": "operator",
+            "options": [
+              [
+                ".<.",
+                "clt"
+              ],
+              [
+                ".>.",
+                "cgt"
+              ],
+              [
+                ".<=.",
+                "clte"
+              ],
+              [
+                ".<=.",
+                "cgte"
+              ],
+              [
+                ".=.",
+                "ce"
+              ]
+            ]
+          },
+          {
+            "type": "input_value",
+            "name": "second"
+          }
+        ],
+        "inputsInline": true,
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 230,
+        "tooltip": "Use this comparison between two number values as a constraint.",
+        "helpUrl": "docs/blocks/constraint_comparison"
+      }
+      )}}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
