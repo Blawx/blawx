@@ -89,12 +89,6 @@
                             </span>
                             <span class="text">Run Blawx Code</span>
                         </a>
-                        <a href="/docs/" target=_blank class="btn btn-warning btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-question"></i>
-                            </span>
-                            <span class="text">Help</span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -244,42 +238,42 @@
             toolbox: document.getElementById('toolbox')});
         var importWorkspace = new Blockly.Workspace();
         var onresize = function(e) {
-            // Compute the absolute coordinates and dimensions of blocklyArea.
-            // var element = blocklyArea;
-            // var x = 0;
-            // var y = 0;
-            // do {
-            //     x += element.offsetLeft;
-            //     y += element.offsetTop;
-            //     element = element.offsetParent;
-            // } while (element);
-            // Position blocklyDiv over blocklyArea.
-            blocklyDiv.style.left = '15px';
-            blocklyDiv.style.top = '15px';
-            blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
-            blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
-            Blockly.svgResize(demoWorkspace);
-            };
-            window.addEventListener('resize', onresize, false);
-            onresize();
-            Blockly.svgResize(demoWorkspace);
-            window.setTimeout(BlocklyStorage.restoreBlocks, 0);
-            BlocklyStorage.backupOnUnload();
+        // Compute the absolute coordinates and dimensions of blocklyArea.
+        var element = blocklyArea;
+        var x = 0;
+        var y = 0;
+        do {
+            x += element.offsetLeft;
+            y += element.offsetTop;
+            element = element.offsetParent;
+        } while (element);
+        // Position blocklyDiv over blocklyArea.
+        blocklyDiv.style.left = x + 'px';
+        blocklyDiv.style.top = y + 'px';
+        blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+        blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+        Blockly.svgResize(demoWorkspace);
+        };
+        window.addEventListener('resize', onresize, false);
+        onresize();
+        Blockly.svgResize(demoWorkspace);
+        window.setTimeout(BlocklyStorage.restoreBlocks, 0);
+        BlocklyStorage.backupOnUnload();
 
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            if (urlParams.has('load')) {
-                xhttp = new XMLHttpRequest();
-                loadfile = urlParams.get('load');
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var xml = Blockly.Xml.textToDom(this.responseText);
-                        demoWorkspace.clear();
-                        Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-                    }
-                };
-                xhttp.open("GET",loadfile,true);
-                xhttp.send();
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if (urlParams.has('load')) {
+            xhttp = new XMLHttpRequest();
+            loadfile = urlParams.get('load');
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var xml = Blockly.Xml.textToDom(this.responseText);
+                    demoWorkspace.clear();
+                    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+                }
+            };
+            xhttp.open("GET",loadfile,true);
+            xhttp.send();
         }
     </script>
     <script src="buttons.js"></script>
