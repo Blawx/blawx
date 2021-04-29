@@ -55,8 +55,8 @@
         </div>
         <div id="interface" class="col-12 flex-grow-1 d-flex">
             <div class="col-12">
-
-                <div class="card shadow mb-4" style="min-height: 90%;">
+                
+                     <div class="card shadow mb-4" style="min-height: 90%;">
                     <div class="card-body d-flex">
                         <div id="blocklyArea" class="flex-grow-1"></div>
                         <div id="blocklyDiv" style="position: absolute"></div>
@@ -64,29 +64,34 @@
                             <textarea rows=2 name="output" id="output" readonly></textarea>
                         </div> -->
                     </div>
-                </div>
+                    </div>
+                <!-- <div class="col-4 card shadow mb-4" style="min-height: 90%;">
+                    <div class="card-body d-flex">
+                        This is where the answers will go.
+                    </div>
+                </div> -->
                 <!-- buttons -->
                 <div class="col-12">
                     <div class="col-12">
-                        <a href="#" class="btn btn-secondary btn-icon-split">
+                        <a href="javascript:void(null)" class="btn btn-secondary btn-icon-split" onclick="getLoadFile()">
                             <span class="icon text-white-50">
                                 <i class="fas fa-upload"></i>
                             </span>
                             <span class="text">Load Workspace</span>
                         </a>
-                        <a href="#" class="btn btn-primary btn-icon-split">
+                        <a href="javascript:void(null)" class="btn btn-primary btn-icon-split" onclick="exportBlocks()">
                             <span class="icon text-white-50">
                                 <i class="fas fa-download"></i>
                             </span>
                             <span class="text">Save Workspace</span>
                         </a>
-                        <a href="#" class="btn btn-danger btn-icon-split">
+                        <a href="javascript:void(null)" class="btn btn-danger btn-icon-split" onclick="clearBlocks()">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
                             <span class="text">Clear Workspace</span>
                         </a>
-                        <a href="#" class="btn btn-success btn-icon-split">
+                        <a href="javascript:void(null)" class="btn btn-success btn-icon-split" onclick="runCode()">
                             <span class="icon text-white-50">
                                 <i class="fas fa-play"></i>
                             </span>

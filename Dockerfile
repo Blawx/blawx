@@ -78,7 +78,7 @@ RUN gem install "just-the-docs"
 
 RUN bundle exec just-the-docs rake search:init
 
-RUN bundle exec jekyll build
+RUN bundle exec jekyll build --incremental
 
 RUN cp -r /var/www/html/docsource/_site/* /var/www/html/docs
 
