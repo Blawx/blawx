@@ -37,6 +37,10 @@ else:
 floracode = subprocess.run(["node", "/var/www/html/decode.js", blawxfilename],
                 capture_output=True,text=True).stdout
 
+# For testing code generation with s(CASP)
+print(floracode)
+exit
+
 # Take the queries out of the code and save them.
 # Also, think about whether or not this is necessary. Maybe not.
 
