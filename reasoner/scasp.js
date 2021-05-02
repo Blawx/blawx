@@ -4,27 +4,27 @@
 
 Blockly.sCASP['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
-    var code = text_type_name + '::Thing';
+    var code = "#pred " + text_type_name + "(A) :: '@(A) is in the category " + text_type_name + "'"
     return code;
   };
   
   Blockly.sCASP['declare_type_is_type'] = function(block) {
     var value_first_type = Blockly.sCASP.valueToCode(block, 'first_type', Blockly.sCASP.ORDER_ATOMIC);
     var value_second_type = Blockly.sCASP.valueToCode(block, 'second_type', Blockly.sCASP.ORDER_ATOMIC);
-    var code = value_first_type + "::" + value_second_type;
+    var code = value_first_type + "(A) :- " + value_second_type + "(A)";
     return code;
   };
   
   Blockly.sCASP['entity_declaration'] = function(block) {
     var text_entity_name = block.getFieldValue('entity_name');
-    var code = text_entity_name;
+    var code = "";
     return code;
   };
   
   Blockly.sCASP['entity_is_type'] = function(block) {
     var value_entity_name = Blockly.sCASP.valueToCode(block, 'entity name', Blockly.sCASP.ORDER_ATOMIC);
     var value_type_name = Blockly.sCASP.valueToCode(block, 'type name', Blockly.sCASP.ORDER_ATOMIC);
-    var code = value_entity_name + ":" + value_type_name;
+    var code = value_type_name + "(" + value_entity_name + ")";
     return code;
   };
   
@@ -33,7 +33,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     var statements_conclusion = Blockly.sCASP.statementToCode(block, 'conclusion');
     var code = "";
     if (text_rule_name) {
-        code += '@{' + text_rule_name.replace(/ /g,"_") + "}\n";
+        code += '%@{' + text_rule_name.replace(/ /g,"_") + "}\n";
     }
     var currentBlock = this.getInputTargetBlock('conclusion');
     while (currentBlock) {
@@ -61,7 +61,7 @@ Blockly.sCASP['declare_type'] = function(block) {
   
   Blockly.sCASP['variable_selector'] = function(block) {
     var text_variable_selected = block.getFieldValue('variable_selected');
-    var code = '?' + text_variable_selected;
+    var code = text_variable_selected;
     return [code, Blockly.sCASP.ORDER_ATOMIC];
   };
   
@@ -79,7 +79,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     var value_entity = Blockly.sCASP.valueToCode(block, 'entity', Blockly.sCASP.ORDER_ATOMIC);
     var value = Blockly.sCASP.valueToCode(block, 'value', Blockly.sCASP.ORDER_ATOMIC);
     var attributeName = block.getFieldValue('attributeName');
-    var code = value_entity + '[' + attributeName + '->' + value + ']';
+    var code = attributeName + "(" + value_entity + "," + value + ")";
     return code;
   }
   
@@ -159,13 +159,13 @@ Blockly.sCASP['declare_type'] = function(block) {
             code += ".\n";
         }
     }
-    // Flora-2 gets confused if queries are more than one line.
+    // Reduce the query to a single line.
     onelinecode = code.replace(/\r?\n|\r/g, "");
     return onelinecode;
   };
   
   Blockly.sCASP['naf_negation'] = function(block) {
-    var code = '\\naf (';
+    var code = 'not (';
     var currentBlock = this.getInputTargetBlock('NAME');
     while (currentBlock) {
         var codeForBlock = getCodeForSingleBlock(currentBlock);
@@ -177,7 +177,7 @@ Blockly.sCASP['declare_type'] = function(block) {
             code += "\n";
         }
     }
-    code += ")";
+    code += ")"
     return code;
   };
   
@@ -191,14 +191,15 @@ Blockly.sCASP['declare_type'] = function(block) {
   Blockly.sCASP['attribute_declaration'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var value_attribute_name = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
-    var code = text_attribute_name.replace(/ /g,"_") + '=>' + value_attribute_name;
+    var code = "";
     return code;
   };
   
   Blockly.sCASP['override'] = function(block) {
     var text_first_rule = block.getFieldValue('first_rule');
     var text_second_rule = block.getFieldValue('second_rule');
-    var code = '\\overrides(' + text_first_rule + ", " + text_second_rule +").\n";
+    var code = 'overrides(' + text_first_rule + ",Conclusion1," + text_second_rule +",Conclusion2).\n";
+    code += "opposes(" + text_first_rule + ",Conclusion1," + text_second_rule +",Conclusion2).\n";
     return code;
   };
   
@@ -221,7 +222,7 @@ Blockly.sCASP['declare_type'] = function(block) {
       }
     }
     code += '|]';
-    return code;
+    return "";
   };
   
   Blockly.sCASP['boolean_datatype'] = function(block) {
@@ -370,7 +371,7 @@ Blockly.sCASP['declare_type'] = function(block) {
   Blockly.sCASP['calculation'] = function(block) {
     var value_variable = Blockly.sCASP.valueToCode(block, 'variable', Blockly.sCASP.ORDER_ATOMIC);
     var value_calculation = Blockly.sCASP.valueToCode(block, 'calculation', Blockly.sCASP.ORDER_ATOMIC);
-    var code = value_variable + " \\is " + value_calculation;
+    var code = value_variable + " is " + value_calculation;
     return code;
   };
 
@@ -378,17 +379,17 @@ Blockly.sCASP['declare_type'] = function(block) {
     var dropdown_value = block.getFieldValue('value');
     var code = "";
     if (dropdown_value == "true") {
-      code = "\\true";
+      code = "true";
     }
     if (dropdown_value == "false") {
-      code = "\\false";
+      code = "false";
     }
     return [code, Blockly.sCASP.ORDER_ATOMIC];
   };
 
   Blockly.sCASP['blawx_string'] = function(block) {
     var text_string = block.getFieldValue('string');
-    var code = '"' + text_string + '"^^\\string';
+    var code = '"' + text_string + '"';
     return [code, Blockly.sCASP.ORDER_ATOMIC];
   };
 
@@ -397,7 +398,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
     var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
     var code = text_attribute_name + "{0.." + number_maximum_cardinality + "} =>" + value_attribute_type;
-    return code;
+    return "";
   };
   
   Blockly.sCASP['cardinality_or_more'] = function(block) {
@@ -405,7 +406,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
     var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
     var code = text_attribute_name + "{" + number_minimum_cardinality + "..*} =>" + value_attribute_type;
-    return code;
+    return "";
   };
   
   Blockly.sCASP['cardinality_exactly'] = function(block) {
@@ -413,7 +414,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     var number_cardinality = block.getFieldValue('cardinality');
     var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
     var code = text_attribute_name + "{" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
-    return code;
+    return "";
   };
   
   Blockly.sCASP['cardinality_between'] = function(block) {
@@ -422,31 +423,31 @@ Blockly.sCASP['declare_type'] = function(block) {
     var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
     var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
     var code = text_attribute_name + "{" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
-    return code;
+    return "";
   };
   
   Blockly.sCASP['cardinality_any'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
     var code = text_attribute_name + "=>" + value_attribute_type;
-    return code;
+    return "";
   };
 
   Blockly.sCASP['unnamed_variable'] = function(block) {
-    var code = '?_';
+    var code = '_';
     return [code, Blockly.sCASP.ORDER_ATOMIC];
   };
   
   Blockly.sCASP['silent_variable_selector'] = function(block) {
     var text_variable_selected = block.getFieldValue('variable_selected');
-    var code = '?_' + text_variable_selected;
+    var code = '_' + text_variable_selected;
     return [code, Blockly.sCASP.ORDER_ATOMIC];
   };
 
   Blockly.sCASP['new_object_of_type'] = function(block) {
     var text_object_name = block.getFieldValue('object_name');
     var category_name = block.getFieldValue('category_name');
-    var code = text_object_name + ':' + category_name;
+    var code = category_name + "(" + text_object_name + ")";
     return code;
   };
 
@@ -471,7 +472,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     }
     var object_element = Blockly.sCASP.valueToCode(block, object_entity, Blockly.sCASP.ORDER_ATOMIC);
     var value_element = Blockly.sCASP.valueToCode(block, value_entity, Blockly.sCASP.ORDER_ATOMIC);
-    var code = object_element + '[' + attributeName + '->' + value_element + ']';
+    var code = attributeName + "(" + object_element + ',' + value_element + ')';
     return code;
   }
 
