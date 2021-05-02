@@ -2,35 +2,35 @@
 // to be used in the s(CASP) version of decode.js
 
 
-Blockly.sCASP['declare_type'] = function(block) {
+Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = "#pred " + text_type_name + "(A) :: '@(A) is in the category " + text_type_name + "'"
     return code;
   };
   
-  Blockly.sCASP['declare_type_is_type'] = function(block) {
-    var value_first_type = Blockly.sCASP.valueToCode(block, 'first_type', Blockly.sCASP.ORDER_ATOMIC);
-    var value_second_type = Blockly.sCASP.valueToCode(block, 'second_type', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['declare_type_is_type'] = function(block) {
+    var value_first_type = Blockly.JavaScript.valueToCode(block, 'first_type', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_type = Blockly.JavaScript.valueToCode(block, 'second_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = value_first_type + "(A) :- " + value_second_type + "(A)";
     return code;
   };
   
-  Blockly.sCASP['entity_declaration'] = function(block) {
+  Blockly.JavaScript['entity_declaration'] = function(block) {
     var text_entity_name = block.getFieldValue('entity_name');
     var code = "";
     return code;
   };
   
-  Blockly.sCASP['entity_is_type'] = function(block) {
-    var value_entity_name = Blockly.sCASP.valueToCode(block, 'entity name', Blockly.sCASP.ORDER_ATOMIC);
-    var value_type_name = Blockly.sCASP.valueToCode(block, 'type name', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['entity_is_type'] = function(block) {
+    var value_entity_name = Blockly.JavaScript.valueToCode(block, 'entity name', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_type_name = Blockly.JavaScript.valueToCode(block, 'type name', Blockly.JavaScript.ORDER_ATOMIC);
     var code = value_type_name + "(" + value_entity_name + ")";
     return code;
   };
   
-  Blockly.sCASP['rule'] = function(block) {
+  Blockly.JavaScript['rule'] = function(block) {
     var text_rule_name = block.getFieldValue('rule_name');
-    var statements_conclusion = Blockly.sCASP.statementToCode(block, 'conclusion');
+    var statements_conclusion = Blockly.JavaScript.statementToCode(block, 'conclusion');
     var code = "";
     if (text_rule_name) {
         code += '%@{' + text_rule_name.replace(/ /g,"_") + "}\n";
@@ -59,38 +59,38 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
   
-  Blockly.sCASP['variable_selector'] = function(block) {
+  Blockly.JavaScript['variable_selector'] = function(block) {
     var text_variable_selected = block.getFieldValue('variable_selected');
     var code = text_variable_selected;
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
-  Blockly.sCASP['object_selector'] = function(block) {
+  Blockly.JavaScript['object_selector'] = function(block) {
     var code = block.toString();
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   }
   
-  Blockly.sCASP['category_selector'] = function(block) {
+  Blockly.JavaScript['category_selector'] = function(block) {
     var code = block.toString();
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   }
   
-  Blockly.sCASP['attribute_selector'] = function(block) {
-    var value_entity = Blockly.sCASP.valueToCode(block, 'entity', Blockly.sCASP.ORDER_ATOMIC);
-    var value = Blockly.sCASP.valueToCode(block, 'value', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['attribute_selector'] = function(block) {
+    var value_entity = Blockly.JavaScript.valueToCode(block, 'entity', Blockly.JavaScript.ORDER_ATOMIC);
+    var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
     var attributeName = block.getFieldValue('attributeName');
     var code = attributeName + "(" + value_entity + "," + value + ")";
     return code;
   }
   
-  Blockly.sCASP['conjunction'] = function(block) {
-    var statements_first_statement = Blockly.sCASP.statementToCode(block, 'first_statement');
-    var statements_second_statement = Blockly.sCASP.statementToCode(block, 'second_statement');
+  Blockly.JavaScript['conjunction'] = function(block) {
+    var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
+    var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
     var code = statements_first_statement + ',\n' + statements_second_statement;
     return code;
   };
   
-//   Blockly.sCASP['disjunction'] = function(block) {
+//   Blockly.JavaScript['disjunction'] = function(block) {
 //     var code = "((\n";
 //     var currentBlock = this.getInputTargetBlock('first_statement');
 //     while (currentBlock) {
@@ -119,7 +119,7 @@ Blockly.sCASP['declare_type'] = function(block) {
 //     return code;
 //   };
   
-//   Blockly.sCASP['negation'] = function(block) {
+//   Blockly.JavaScript['negation'] = function(block) {
 //     var code = '\\neg (';
 //     var currentBlock = this.getInputTargetBlock('NAME');
 //     while (currentBlock) {
@@ -135,7 +135,7 @@ Blockly.sCASP['declare_type'] = function(block) {
 //     code += ")";
 //     return code;};
   
-  Blockly.sCASP['fact'] = function(block) {
+  Blockly.JavaScript['fact'] = function(block) {
     var code = '';
     var currentBlock = this.getInputTargetBlock('statement');
     while (currentBlock) {
@@ -146,7 +146,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
   
-  Blockly.sCASP['query'] = function(block) {
+  Blockly.JavaScript['query'] = function(block) {
     var code = '?- '
     var currentBlock = this.getInputTargetBlock('query');
     while (currentBlock) {
@@ -164,7 +164,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     return onelinecode;
   };
   
-  Blockly.sCASP['naf_negation'] = function(block) {
+  Blockly.JavaScript['naf_negation'] = function(block) {
     var code = 'not (';
     var currentBlock = this.getInputTargetBlock('NAME');
     while (currentBlock) {
@@ -181,21 +181,21 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
   
-  Blockly.sCASP['entity_identity'] = function(block) {
-    var value_first_entity = Blockly.sCASP.valueToCode(block, 'first_entity', Blockly.sCASP.ORDER_ATOMIC);
-    var value_second_entity = Blockly.sCASP.valueToCode(block, 'second_entity', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['entity_identity'] = function(block) {
+    var value_first_entity = Blockly.JavaScript.valueToCode(block, 'first_entity', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_entity = Blockly.JavaScript.valueToCode(block, 'second_entity', Blockly.JavaScript.ORDER_ATOMIC);
     var code = value_first_entity + ':=0=:' + value_second_entity;
     return code;
   };
   
-  Blockly.sCASP['attribute_declaration'] = function(block) {
+  Blockly.JavaScript['attribute_declaration'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
-    var value_attribute_name = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
+    var value_attribute_name = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = "";
     return code;
   };
   
-  Blockly.sCASP['override'] = function(block) {
+  Blockly.JavaScript['override'] = function(block) {
     var text_first_rule = block.getFieldValue('first_rule');
     var text_second_rule = block.getFieldValue('second_rule');
     var code = 'overrides(' + text_first_rule + ",Conclusion1," + text_second_rule +",Conclusion2).\n";
@@ -203,9 +203,9 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
   
-  Blockly.sCASP['declare_type_with_attributes'] = function(block) {
-    var value_type = Blockly.sCASP.valueToCode(block, 'type', Blockly.sCASP.ORDER_ATOMIC);
-    var statements_name = Blockly.sCASP.statementToCode(block, 'NAME');
+  Blockly.JavaScript['declare_type_with_attributes'] = function(block) {
+    var value_type = Blockly.JavaScript.valueToCode(block, 'type', Blockly.JavaScript.ORDER_ATOMIC);
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
     var code = value_type + '[|';
     var currentBlock = this.getInputTargetBlock('NAME');
     while (currentBlock) {
@@ -225,25 +225,25 @@ Blockly.sCASP['declare_type'] = function(block) {
     return "";
   };
   
-  Blockly.sCASP['boolean_datatype'] = function(block) {
+  Blockly.JavaScript['boolean_datatype'] = function(block) {
     var code = "\\boolean";
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
-  Blockly.sCASP['number_datatype'] = function(block) {
+  Blockly.JavaScript['number_datatype'] = function(block) {
     var code = '\\integer';
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
-  Blockly.sCASP['string_datatype'] = function(block) {
+  Blockly.JavaScript['string_datatype'] = function(block) {
     var code = '\\string';
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
-  Blockly.sCASP['comparitor'] = function(block) {
-    var value_first_value = Blockly.sCASP.valueToCode(block, 'first_value', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['comparitor'] = function(block) {
+    var value_first_value = Blockly.JavaScript.valueToCode(block, 'first_value', Blockly.JavaScript.ORDER_ATOMIC);
     var dropdown_comparitor = block.getFieldValue('comparitor');
-    var value_second_value = Blockly.sCASP.valueToCode(block, 'second_value', Blockly.sCASP.ORDER_ATOMIC);
+    var value_second_value = Blockly.JavaScript.valueToCode(block, 'second_value', Blockly.JavaScript.ORDER_ATOMIC);
     var new_comparitor = ''
     switch (dropdown_comparitor) {
       case 'lt':
@@ -274,17 +274,17 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
   
-  Blockly.sCASP['assignment'] = function(block) {
-    var value_variable = Blockly.sCASP.valueToCode(block, 'variable', Blockly.sCASP.ORDER_ATOMIC);
-    var value_value = Blockly.sCASP.valueToCode(block, 'value', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['assignment'] = function(block) {
+    var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
     var code = value_variable + "=" + value_value;
     return code;
   };
   
-  Blockly.sCASP['math_operator'] = function(block) {
-    var value_left_value = Blockly.sCASP.valueToCode(block, 'left_value', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['math_operator'] = function(block) {
+    var value_left_value = Blockly.JavaScript.valueToCode(block, 'left_value', Blockly.JavaScript.ORDER_ATOMIC);
     var dropdown_operator = block.getFieldValue('operator');
-    var value_right_value = Blockly.sCASP.valueToCode(block, 'right_value', Blockly.sCASP.ORDER_ATOMIC);
+    var value_right_value = Blockly.JavaScript.valueToCode(block, 'right_value', Blockly.JavaScript.ORDER_ATOMIC);
     switch(dropdown_operator) {
       case "add":
         var operator = "+";
@@ -302,26 +302,26 @@ Blockly.sCASP['declare_type'] = function(block) {
         var operator = "not implemented";
     }
     var code = value_left_value + operator + value_right_value;
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
-  Blockly.sCASP['import_ruleset'] = function(block) {
+  Blockly.JavaScript['import_ruleset'] = function(block) {
     var text_ruleset_uri = block.getFieldValue('uri');
     var code = '';
     return code;
   };
 
-  Blockly.sCASP['data_property'] = function(block) {
-    var value_subject = Blockly.sCASP.valueToCode(block, 'subject', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['data_property'] = function(block) {
+    var value_subject = Blockly.JavaScript.valueToCode(block, 'subject', Blockly.JavaScript.ORDER_ATOMIC);
     var text_predicate = block.getFieldValue('predicate');
-    var value_object = Blockly.sCASP.valueToCode(block, 'object', Blockly.sCASP.ORDER_ATOMIC);
+    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
     var code = value_subject + '[' + text_predicate + '->' + value_object + ']';
     return code;
   };
 
-  Blockly.sCASP['data_dictionary'] = function(block) {
+  Blockly.JavaScript['data_dictionary'] = function(block) {
     var text_dictionary_name = block.getFieldValue('dictionary_name');
-    var statements_name = Blockly.sCASP.statementToCode(block, 'NAME');
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
     var code = '';
     // Add the starter code.
     code += text_dictionary_name + "[";
@@ -340,16 +340,16 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
   
-  Blockly.sCASP['kvp_basic'] = function(block) {
+  Blockly.JavaScript['kvp_basic'] = function(block) {
     var text_key = block.getFieldValue('key');
-    var value_value = Blockly.sCASP.valueToCode(block, 'value', Blockly.sCASP.ORDER_ATOMIC);
+    var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
     var code = text_key + ' -> ' + value_value;
     return code;
   };
   
-  Blockly.sCASP['data_dictionary_sub'] = function(block) {
+  Blockly.JavaScript['data_dictionary_sub'] = function(block) {
     var text_dictionary_name = block.getFieldValue('dictionary_name');
-    var statements_name = Blockly.sCASP.statementToCode(block, 'NAME');
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
     var code = '';
     // Add starter code
     code += text_dictionary_name + " -> \\#[";
@@ -368,14 +368,14 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
 
-  Blockly.sCASP['calculation'] = function(block) {
-    var value_variable = Blockly.sCASP.valueToCode(block, 'variable', Blockly.sCASP.ORDER_ATOMIC);
-    var value_calculation = Blockly.sCASP.valueToCode(block, 'calculation', Blockly.sCASP.ORDER_ATOMIC);
+  Blockly.JavaScript['calculation'] = function(block) {
+    var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
     var code = value_variable + " is " + value_calculation;
     return code;
   };
 
-  Blockly.sCASP['boolean_value'] = function(block) {
+  Blockly.JavaScript['boolean_value'] = function(block) {
     var dropdown_value = block.getFieldValue('value');
     var code = "";
     if (dropdown_value == "true") {
@@ -384,74 +384,74 @@ Blockly.sCASP['declare_type'] = function(block) {
     if (dropdown_value == "false") {
       code = "false";
     }
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
-  Blockly.sCASP['blawx_string'] = function(block) {
+  Blockly.JavaScript['blawx_string'] = function(block) {
     var text_string = block.getFieldValue('string');
     var code = '"' + text_string + '"';
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
-  Blockly.sCASP['cardinality_up_to'] = function(block) {
+  Blockly.JavaScript['cardinality_up_to'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
-    var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = text_attribute_name + "{0.." + number_maximum_cardinality + "} =>" + value_attribute_type;
     return "";
   };
   
-  Blockly.sCASP['cardinality_or_more'] = function(block) {
+  Blockly.JavaScript['cardinality_or_more'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
-    var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = text_attribute_name + "{" + number_minimum_cardinality + "..*} =>" + value_attribute_type;
     return "";
   };
   
-  Blockly.sCASP['cardinality_exactly'] = function(block) {
+  Blockly.JavaScript['cardinality_exactly'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var number_cardinality = block.getFieldValue('cardinality');
-    var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = text_attribute_name + "{" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
     return "";
   };
   
-  Blockly.sCASP['cardinality_between'] = function(block) {
+  Blockly.JavaScript['cardinality_between'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
     var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
-    var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = text_attribute_name + "{" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
     return "";
   };
   
-  Blockly.sCASP['cardinality_any'] = function(block) {
+  Blockly.JavaScript['cardinality_any'] = function(block) {
     var text_attribute_name = block.getFieldValue('attribute_name');
-    var value_attribute_type = Blockly.sCASP.valueToCode(block, 'attribute_type', Blockly.sCASP.ORDER_ATOMIC);
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = text_attribute_name + "=>" + value_attribute_type;
     return "";
   };
 
-  Blockly.sCASP['unnamed_variable'] = function(block) {
+  Blockly.JavaScript['unnamed_variable'] = function(block) {
     var code = '_';
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
-  Blockly.sCASP['silent_variable_selector'] = function(block) {
+  Blockly.JavaScript['silent_variable_selector'] = function(block) {
     var text_variable_selected = block.getFieldValue('variable_selected');
     var code = '_' + text_variable_selected;
-    return [code, Blockly.sCASP.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
-  Blockly.sCASP['new_object_of_type'] = function(block) {
+  Blockly.JavaScript['new_object_of_type'] = function(block) {
     var text_object_name = block.getFieldValue('object_name');
     var category_name = block.getFieldValue('category_name');
     var code = category_name + "(" + text_object_name + ")";
     return code;
   };
 
-  Blockly.sCASP['custom_attribute_declaration'] = function(block) {
+  Blockly.JavaScript['custom_attribute_declaration'] = function(block) {
     var dropdown_order = block.getFieldValue('order');
     var text_prefix = block.getFieldValue('prefix');
     var text_infix = block.getFieldValue('infix');
@@ -460,7 +460,7 @@ Blockly.sCASP['declare_type'] = function(block) {
     return code;
   };
 
-  Blockly.sCASP['custom_attribute_selector'] = function(block) {
+  Blockly.JavaScript['custom_attribute_selector'] = function(block) {
     var attributeName = block.blawxAttributeName;
     var order = block.blawxAttributeOrder;
     if (order == "object_first") {
@@ -470,8 +470,8 @@ Blockly.sCASP['declare_type'] = function(block) {
       var object_entity = 'second_entity';
       var value_entity = 'first_entity';
     }
-    var object_element = Blockly.sCASP.valueToCode(block, object_entity, Blockly.sCASP.ORDER_ATOMIC);
-    var value_element = Blockly.sCASP.valueToCode(block, value_entity, Blockly.sCASP.ORDER_ATOMIC);
+    var object_element = Blockly.JavaScript.valueToCode(block, object_entity, Blockly.JavaScript.ORDER_ATOMIC);
+    var value_element = Blockly.JavaScript.valueToCode(block, value_entity, Blockly.JavaScript.ORDER_ATOMIC);
     var code = attributeName + "(" + object_element + ',' + value_element + ')';
     return code;
   }
@@ -486,7 +486,7 @@ function getCodeForSingleBlock(block) {
       return getCodeForSingleBlock(block.getNextBlock());
     }
   
-    var func = Blockly.sCASP[block.type];
+    var func = Blockly.JavaScript[block.type];
     if (typeof func != "function") {
       throw Error("Language s(CASP) does not know how to generate code for block type " + block.type);
     }

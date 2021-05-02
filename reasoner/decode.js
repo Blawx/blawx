@@ -2837,722 +2837,1201 @@ Blockly.Blocks['abducibility'] = {
       }
       )}}
 
-  Blockly.JavaScript['declare_type'] = function(block) {
-    var text_type_name = block.getFieldValue('type_name');
-    var code = text_type_name + '::Thing';
-    return code;
-  };
+  // Blockly.JavaScript['declare_type'] = function(block) {
+  //   var text_type_name = block.getFieldValue('type_name');
+  //   var code = text_type_name + '::Thing';
+  //   return code;
+  // };
   
-  Blockly.JavaScript['declare_type_is_type'] = function(block) {
-    var value_first_type = Blockly.JavaScript.valueToCode(block, 'first_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_type = Blockly.JavaScript.valueToCode(block, 'second_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_type + "::" + value_second_type;
-    return code;
-  };
+  // Blockly.JavaScript['declare_type_is_type'] = function(block) {
+  //   var value_first_type = Blockly.JavaScript.valueToCode(block, 'first_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_type = Blockly.JavaScript.valueToCode(block, 'second_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_first_type + "::" + value_second_type;
+  //   return code;
+  // };
   
-  Blockly.JavaScript['entity_declaration'] = function(block) {
-    var text_entity_name = block.getFieldValue('entity_name');
-    var code = text_entity_name;
-    return code;
-  };
+  // Blockly.JavaScript['entity_declaration'] = function(block) {
+  //   var text_entity_name = block.getFieldValue('entity_name');
+  //   var code = text_entity_name;
+  //   return code;
+  // };
   
-  Blockly.JavaScript['entity_is_type'] = function(block) {
-    var value_entity_name = Blockly.JavaScript.valueToCode(block, 'entity name', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_type_name = Blockly.JavaScript.valueToCode(block, 'type name', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_entity_name + ":" + value_type_name;
-    return code;
-  };
+  // Blockly.JavaScript['entity_is_type'] = function(block) {
+  //   var value_entity_name = Blockly.JavaScript.valueToCode(block, 'entity name', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_type_name = Blockly.JavaScript.valueToCode(block, 'type name', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_entity_name + ":" + value_type_name;
+  //   return code;
+  // };
   
-  Blockly.JavaScript['rule'] = function(block) {
-    var text_rule_name = block.getFieldValue('rule_name');
-    var statements_conclusion = Blockly.JavaScript.statementToCode(block, 'conclusion');
-    var code = "";
-    if (text_rule_name) {
-        code += '@{' + text_rule_name.replace(/ /g,"_") + "}\n";
-    }
-    var currentBlock = this.getInputTargetBlock('conclusion');
-    while (currentBlock) {
-      var codeForBlock = getCodeForSingleBlock(currentBlock);
-      code += codeForBlock;
-      currentBlock = currentBlock.getNextBlock();
-      if (currentBlock) {
-          code += ',\n';
-      }
-    }
-    code += ' :-\n';
-    currentBlock = this.getInputTargetBlock('conditions');
-    while (currentBlock) {
-      var codeForBlock = getCodeForSingleBlock(currentBlock);
-      code += "  " + codeForBlock;
-      currentBlock = currentBlock.getNextBlock();
-      if (currentBlock) {
-          code += ',\n';
-      } else {
-          code += '.\n';
-      }
-    }
-    return code;
-  };
+  // Blockly.JavaScript['rule'] = function(block) {
+  //   var text_rule_name = block.getFieldValue('rule_name');
+  //   var statements_conclusion = Blockly.JavaScript.statementToCode(block, 'conclusion');
+  //   var code = "";
+  //   if (text_rule_name) {
+  //       code += '@{' + text_rule_name.replace(/ /g,"_") + "}\n";
+  //   }
+  //   var currentBlock = this.getInputTargetBlock('conclusion');
+  //   while (currentBlock) {
+  //     var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //     code += codeForBlock;
+  //     currentBlock = currentBlock.getNextBlock();
+  //     if (currentBlock) {
+  //         code += ',\n';
+  //     }
+  //   }
+  //   code += ' :-\n';
+  //   currentBlock = this.getInputTargetBlock('conditions');
+  //   while (currentBlock) {
+  //     var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //     code += "  " + codeForBlock;
+  //     currentBlock = currentBlock.getNextBlock();
+  //     if (currentBlock) {
+  //         code += ',\n';
+  //     } else {
+  //         code += '.\n';
+  //     }
+  //   }
+  //   return code;
+  // };
   
-  Blockly.JavaScript['variable_selector'] = function(block) {
-    var text_variable_selected = block.getFieldValue('variable_selected');
-    var code = '?' + text_variable_selected;
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
+  // Blockly.JavaScript['variable_selector'] = function(block) {
+  //   var text_variable_selected = block.getFieldValue('variable_selected');
+  //   var code = '?' + text_variable_selected;
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
   
-  Blockly.JavaScript['object_selector'] = function(block) {
-    var code = block.toString();
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // Blockly.JavaScript['object_selector'] = function(block) {
+  //   var code = block.toString();
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // }
+  
+  // Blockly.JavaScript['category_selector'] = function(block) {
+  //   var code = block.toString();
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // }
+  
+  // Blockly.JavaScript['attribute_selector'] = function(block) {
+  //   var value_entity = Blockly.JavaScript.valueToCode(block, 'entity', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var attributeName = block.getFieldValue('attributeName');
+  //   var code = value_entity + '[' + attributeName + '->' + value + ']';
+  //   return code;
+  // }
+  
+  // Blockly.JavaScript['conjunction'] = function(block) {
+  //   var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
+  //   var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
+  //   var code = statements_first_statement + ',\n' + statements_second_statement;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['disjunction'] = function(block) {
+  //   var code = "((\n";
+  //   var currentBlock = this.getInputTargetBlock('first_statement');
+  //   while (currentBlock) {
+  //       var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //       code += codeForBlock;
+  //       currentBlock = currentBlock.getNextBlock();
+  //       if (currentBlock) {
+  //           code += ",\n";
+  //       } else {
+  //           code += "\n";
+  //       }
+  //   }
+  //   code += ");(";
+  //   var currentBlock = this.getInputTargetBlock('second_statement');
+  //   while (currentBlock) {
+  //       var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //       code += codeForBlock;
+  //       currentBlock = currentBlock.getNextBlock();
+  //       if (currentBlock) {
+  //           code += ",\n";
+  //       } else {
+  //           code += "\n";
+  //       }
+  //   }
+  //   code += "))\n";
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['negation'] = function(block) {
+  //   var code = '\\neg (';
+  //   var currentBlock = this.getInputTargetBlock('NAME');
+  //   while (currentBlock) {
+  //       var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //       code += codeForBlock;
+  //       currentBlock = currentBlock.getNextBlock();
+  //       if (currentBlock) {
+  //           code += ",\n";
+  //       } else {
+  //           code += "\n";
+  //       }
+  //   }
+  //   code += ")";
+  //   return code;};
+  
+  // Blockly.JavaScript['fact'] = function(block) {
+  //   var code = '';
+  //   var currentBlock = this.getInputTargetBlock('statement');
+  //   while (currentBlock) {
+  //     var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //     code += codeForBlock + '.\n';
+  //     currentBlock = currentBlock.getNextBlock();
+  //   }
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['query'] = function(block) {
+  //   var code = '?- '
+  //   var currentBlock = this.getInputTargetBlock('query');
+  //   while (currentBlock) {
+  //       var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //       code += codeForBlock;
+  //       currentBlock = currentBlock.getNextBlock();
+  //       if (currentBlock) {
+  //           code += ",\n";
+  //       } else {
+  //           code += ".\n";
+  //       }
+  //   }
+  //   // Flora-2 gets confused if queries are more than one line.
+  //   onelinecode = code.replace(/\r?\n|\r/g, "");
+  //   return onelinecode;
+  // };
+  
+  // Blockly.JavaScript['naf_negation'] = function(block) {
+  //   var code = '\\naf (';
+  //   var currentBlock = this.getInputTargetBlock('NAME');
+  //   while (currentBlock) {
+  //       var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //       code += codeForBlock;
+  //       currentBlock = currentBlock.getNextBlock();
+  //       if (currentBlock) {
+  //           code += ",\n";
+  //       } else {
+  //           code += "\n";
+  //       }
+  //   }
+  //   code += ")";
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['entity_identity'] = function(block) {
+  //   var value_first_entity = Blockly.JavaScript.valueToCode(block, 'first_entity', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_entity = Blockly.JavaScript.valueToCode(block, 'second_entity', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_first_entity + ':=0=:' + value_second_entity;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['attribute_declaration'] = function(block) {
+  //   var text_attribute_name = block.getFieldValue('attribute_name');
+  //   var value_attribute_name = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = text_attribute_name.replace(/ /g,"_") + '=>' + value_attribute_name;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['implication'] = function(block) {
+  //   var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
+  //   var dropdown_implication_type = block.getFieldValue('implication type');
+  //   var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
+  //   var code = statements_first_statement + dropdown_implication_type + statements_second_statement;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['quantifier'] = function(block) {
+  //   var dropdown_quantifier_type = block.getFieldValue('quantifier_type');
+  //   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = dropdown_quantifier_type + '(' + value_name + ')^(';
+  //   var statements_predicate_statement = Blockly.JavaScript.statementToCode(block, 'predicate_statement');
+  //   var currentBlock = this.getInputTargetBlock('predicate_statement');
+  //   while (currentBlock) {
+  //       var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //       code += codeForBlock;
+  //       currentBlock = currentBlock.getNextBlock();
+  //       if (currentBlock) {
+  //           code += ",\n";
+  //       } else {
+  //           code += "\n";
+  //       }
+  //   }
+  //   code += ')';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['override'] = function(block) {
+  //   var text_first_rule = block.getFieldValue('first_rule');
+  //   var text_second_rule = block.getFieldValue('second_rule');
+  //   var code = '\\overrides(' + text_first_rule + ", " + text_second_rule +").\n";
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['declare_type_with_attributes'] = function(block) {
+  //   var value_type = Blockly.JavaScript.valueToCode(block, 'type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  //   var code = value_type + '[|';
+  //   var currentBlock = this.getInputTargetBlock('NAME');
+  //   while (currentBlock) {
+  //     var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //     code += codeForBlock;
+  //     currentBlock = currentBlock.getNextBlock();
+  //     if (currentBlock.type == "custom_attribute_declaration") {
+  //       currentBlock = currentBlock.getNextBlock();
+  //       // Skip custom attribute declarations of which there can only
+  //       // be one in a row.
+  //     }
+  //     if (currentBlock) {
+  //         code += ', ';
+  //     }
+  //   }
+  //   code += '|]';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['boolean_datatype'] = function(block) {
+  //   var code = "\\boolean";
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+  
+  // Blockly.JavaScript['number_datatype'] = function(block) {
+  //   var code = '\\integer';
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+  
+  // Blockly.JavaScript['string_datatype'] = function(block) {
+  //   var code = '\\string';
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+  
+  // Blockly.JavaScript['comparitor'] = function(block) {
+  //   var value_first_value = Blockly.JavaScript.valueToCode(block, 'first_value', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var dropdown_comparitor = block.getFieldValue('comparitor');
+  //   var value_second_value = Blockly.JavaScript.valueToCode(block, 'second_value', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var new_comparitor = ''
+  //   switch (dropdown_comparitor) {
+  //     case 'lt':
+  //       new_comparitor = '<';
+  //       break;
+  //     case 'lte':
+  //       new_comparitor = '<=';
+  //       break;
+  //     case 'gt':
+  //       new_comparitor = '>';
+  //       break;
+  //     case 'gte':
+  //       new_comparitor = '>=';
+  //       break;
+  //     case 'eq':
+  //       new_comparitor = '==';
+  //       break;
+  //     case 'neq':
+  //       new_comparitor = '!=';
+  //       break;
+  //     case 'nid':
+  //       new_comparitor = "!==";
+  //       break;
+  //     default:
+  //       new_comparitor = "not implemented";
+  //   }
+  //   var code = value_first_value + new_comparitor + value_second_value;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['assignment'] = function(block) {
+  //   var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_variable + "=" + value_value;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['aggregate_statement'] = function(block) {
+  //   var dropdown_aggregation_operation = block.getFieldValue('aggregation_operation');
+  //   var value_aggregate_variable = Blockly.JavaScript.valueToCode(block, 'aggregate_variable', Blockly.JavaScript.ORDER_ATOMIC);
+  //   //var statements_aggregate_conditions = Blockly.JavaScript.statementToCode(block, 'aggregate_conditions');
+  //   var code = dropdown_aggregation_operation + '{' + value_aggregate_variable + '|';
+  //   var currentBlock = this.getInputTargetBlock('aggregate_conditions');
+  //   while (currentBlock) {
+  //     var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //     code += codeForBlock;
+  //     currentBlock = currentBlock.getNextBlock();
+  //     if (currentBlock) {
+  //         code += ', ';
+  //     }
+  //   }
+  //   code += '}'
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+  
+  // Blockly.JavaScript['math_operator'] = function(block) {
+  //   var value_left_value = Blockly.JavaScript.valueToCode(block, 'left_value', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var dropdown_operator = block.getFieldValue('operator');
+  //   var value_right_value = Blockly.JavaScript.valueToCode(block, 'right_value', Blockly.JavaScript.ORDER_ATOMIC);
+  //   switch(dropdown_operator) {
+  //     case "add":
+  //       var operator = "+";
+  //       break;
+  //     case "subtract":
+  //       var operator = "-";
+  //       break;
+  //     case "multiply":
+  //       var operator = "*";
+  //       break;
+  //     case "divide":
+  //       var operator = "/";
+  //       break;
+  //     default:
+  //       var operator = "not implemented";
+  //   }
+  //   var code = value_left_value + operator + value_right_value;
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+  
+  // Blockly.JavaScript['import_ruleset'] = function(block) {
+  //   var text_ruleset_uri = block.getFieldValue('uri');
+  //   var code = '';
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['data_property'] = function(block) {
+  //   var value_subject = Blockly.JavaScript.valueToCode(block, 'subject', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var text_predicate = block.getFieldValue('predicate');
+  //   var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_subject + '[' + text_predicate + '->' + value_object + ']';
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['data_dictionary'] = function(block) {
+  //   var text_dictionary_name = block.getFieldValue('dictionary_name');
+  //   var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  //   var code = '';
+  //   // Add the starter code.
+  //   code += text_dictionary_name + "[";
+  //   // Add each of the sub-elements.
+  //   var currentBlock = this.getInputTargetBlock('NAME');
+  //   while (currentBlock) {
+  //     var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //     code += codeForBlock;
+  //     currentBlock = currentBlock.getNextBlock();
+  //     if (currentBlock) {
+  //         code += ', ';
+  //     }
+  //   }
+  //   // Add the closer code
+  //   code += "]";
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['kvp_basic'] = function(block) {
+  //   var text_key = block.getFieldValue('key');
+  //   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = text_key + ' -> ' + value_value;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['data_dictionary_sub'] = function(block) {
+  //   var text_dictionary_name = block.getFieldValue('dictionary_name');
+  //   var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  //   var code = '';
+  //   // Add starter code
+  //   code += text_dictionary_name + " -> \\#[";
+  //   // Go through the sub-elements
+  //   var currentBlock = this.getInputTargetBlock('NAME');
+  //   while (currentBlock) {
+  //     var codeForBlock = getCodeForSingleBlock(currentBlock);
+  //     code += codeForBlock;
+  //     currentBlock = currentBlock.getNextBlock();
+  //     if (currentBlock) {
+  //         code += ', ';
+  //     }
+  //   }
+  //   // Add closer code
+  //   code += "]";
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['calculation'] = function(block) {
+  //   var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_variable + " \\is " + value_calculation;
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['boolean_value'] = function(block) {
+  //   var dropdown_value = block.getFieldValue('value');
+  //   var code = "";
+  //   if (dropdown_value == "true") {
+  //     code = "\\true";
+  //   }
+  //   if (dropdown_value == "false") {
+  //     code = "\\false";
+  //   }
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+
+  // Blockly.JavaScript['datetime'] = function(block) {
+  //   var number_year = block.getFieldValue('year');
+  //   var number_month = block.getFieldValue('month');
+  //   var number_day = block.getFieldValue('day');
+  //   var number_hours = block.getFieldValue('hours');
+  //   var number_minutes = block.getFieldValue('minutes');
+  //   var number_seconds = block.getFieldValue('seconds');
+  //   var dropdown_daypart = block.getFieldValue('daypart');
+  //   if (dropdown_daypart == "pm") {
+  //     number_hours += 12;
+  //   }
+  //   var code = '"' + number_year + '-' + number_month + '-' + number_day + 'T';
+  //   code += number_hours + ':' + number_minutes + ':' + number_seconds + '"^^\\dateTime';
+  //   // TODO: Change ORDER_NONE to the correct strength.
+  //   return [code, Blockly.JavaScript.ORDER_NONE];
+  // };
+
+  // Blockly.JavaScript['date'] = function(block) {
+  //   var number_year = block.getFieldValue('year');
+  //   var number_month = block.getFieldValue('month');
+  //   var number_day = block.getFieldValue('day');
+  //   var code = '"' + number_year + "-" + number_month + "-" + number_day + '"^^\\date';
+  //   // TODO: Change ORDER_NONE to the correct strength.
+  //   return [code, Blockly.JavaScript.ORDER_NONE];
+  // };
+
+  // Blockly.JavaScript['time'] = function(block) {
+  //   var number_hours = block.getFieldValue('hours');
+  //   var number_minutes = block.getFieldValue('minutes');
+  //   var number_seconds = block.getFieldValue('seconds');
+  //   var dropdown_daypart = block.getFieldValue('daypart');
+  //   if (dropdown_daypart == "pm") {
+  //     number_hours += 12;
+  //   }
+  //   var code = '"' + number_hours + ':' + number_minutes + ':' + number_seconds + '"^^\\time';
+  //   // TODO: Change ORDER_NONE to the correct strength.
+  //   return [code, Blockly.JavaScript.ORDER_NONE];
+  // };
+
+  // Blockly.JavaScript['duration'] = function(block) {
+  //   var dropdown_sign = block.getFieldValue('sign');
+  //   var number_years = block.getFieldValue('years');
+  //   var number_months = block.getFieldValue('months');
+  //   var number_days = block.getFieldValue('days');
+  //   var number_hours = block.getFieldValue('hours');
+  //   var number_minutes = block.getFieldValue('minutes');
+  //   var number_seconds = block.getFieldValue('seconds');
+  //   var sign = '';
+  //   if (dropdown_sign == 'neg') {
+  //     sign = '-';
+  //   }
+  //   var code = '"' + sign + 'P' + number_years + 'Y' + number_months + 'M';
+  //   code += number_days + 'DT' + number_hours + 'H' + number_minutes + 'M' + number_seconds + 'S"^^\\duration'; 
+  //   // TODO: Change ORDER_NONE to the correct strength.
+  //   return [code, Blockly.JavaScript.ORDER_NONE];
+  // };
+
+  // Blockly.JavaScript['duration_datatype'] = function(block) {
+  //   var code = "\\duration";
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+
+  // Blockly.JavaScript['datetime_datatype'] = function(block) {
+  //   var code = "\\dateTime";
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+
+  // Blockly.JavaScript['time_datatype'] = function(block) {
+  //   var code = "\\time";
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+
+  // Blockly.JavaScript['date_datatype'] = function(block) {
+  //   var code = "\\date";
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+
+  // Blockly.JavaScript['date_before'] = function(block) {
+  //   var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_first_date + '[lessThan(' + value_second_date + ')]@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['date_before_or_eq'] = function(block) {
+  //   var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_first_date + '[lessEq(' + value_second_date + ')]@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['time_before_or_eq'] = function(block) {
+  //   var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_first_time + '[lessEq(' + value_second_time + ')]@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['time_before'] = function(block) {
+  //   var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_first_time + '[lessThan(' + value_second_time + ')]@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['time_plus_dur'] = function(block) {
+  //   var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_time + '[add(' + value_duration + ')->' + value_output + ']@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['date_plus_dur'] = function(block) {
+  //   var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_date + '[add(' + value_duration + ')->' + value_output + ']@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['time_minus_time'] = function(block) {
+  //   var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_time + '[minus(' + value_second_time + ')->' + value_output + ']@datemin';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['date_minus_date'] = function(block) {
+  //   var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_date + '[minus(' + value_second_date + ')->' + value_output + ']@datemin';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['concat_text'] = function(block) {
+  //   var value_first_text = Blockly.JavaScript.valueToCode(block, 'first_text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_second_text = Blockly.JavaScript.valueToCode(block, 'second_text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_result = Blockly.JavaScript.valueToCode(block, 'result', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_first_text + '[concat(' + value_second_text + ')->' + value_result + ']@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['length_text'] = function(block) {
+  //   var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_text + '[length->' + value_name + ']@\\basetype';
+  //   // TODO Fix Field naming
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['toupper_text'] = function(block) {
+  //   var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_text + '[toUpper->' + value_output + ']@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['tolower_text'] = function(block) {
+  //   var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_text + '[toLower->' + value_output + ']@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['startswith_text'] = function(block) {
+  //   var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_text + '[startsWith(' + value_target + ')]@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['endswith_text'] = function(block) {
+  //   var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_text + '[endsWith(' + value_target + ')]@\\basetype';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['substring_text'] = function(block) {
+  //   var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_start = Blockly.JavaScript.valueToCode(block, 'start', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_length = Blockly.JavaScript.valueToCode(block, 'length', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = value_text + '[substring(' + value_start + ',' + value_length + ')->' + value_output + ']@\\basetype';
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['blawx_string'] = function(block) {
+  //   var text_string = block.getFieldValue('string');
+  //   var code = '"' + text_string + '"^^\\string';
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+
+  // Blockly.JavaScript['cardinality_up_to'] = function(block) {
+  //   var text_attribute_name = block.getFieldValue('attribute_name');
+  //   var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
+  //   var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = text_attribute_name + "{0.." + number_maximum_cardinality + "} =>" + value_attribute_type;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['cardinality_or_more'] = function(block) {
+  //   var text_attribute_name = block.getFieldValue('attribute_name');
+  //   var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
+  //   var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = text_attribute_name + "{" + number_minimum_cardinality + "..*} =>" + value_attribute_type;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['cardinality_exactly'] = function(block) {
+  //   var text_attribute_name = block.getFieldValue('attribute_name');
+  //   var number_cardinality = block.getFieldValue('cardinality');
+  //   var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = text_attribute_name + "{" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['cardinality_between'] = function(block) {
+  //   var text_attribute_name = block.getFieldValue('attribute_name');
+  //   var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
+  //   var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
+  //   var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = text_attribute_name + "{" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['cardinality_any'] = function(block) {
+  //   var text_attribute_name = block.getFieldValue('attribute_name');
+  //   var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = text_attribute_name + "=>" + value_attribute_type;
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['unnamed_variable'] = function(block) {
+  //   var code = '?_';
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+  
+  // Blockly.JavaScript['silent_variable_selector'] = function(block) {
+  //   var text_variable_selected = block.getFieldValue('variable_selected');
+  //   var code = '?_' + text_variable_selected;
+  //   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  // };
+
+  // Blockly.JavaScript['new_object_of_type'] = function(block) {
+  //   var text_object_name = block.getFieldValue('object_name');
+  //   var category_name = block.getFieldValue('category_name');
+  //   var code = text_object_name + ':' + category_name;
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['custom_attribute_declaration'] = function(block) {
+  //   var dropdown_order = block.getFieldValue('order');
+  //   var text_prefix = block.getFieldValue('prefix');
+  //   var text_infix = block.getFieldValue('infix');
+  //   var text_postfix = block.getFieldValue('postfix');
+  //   var code = '';
+  //   return code;
+  // };
+
+  // Blockly.JavaScript['custom_attribute_selector'] = function(block) {
+  //   var attributeName = block.blawxAttributeName;
+  //   var order = block.blawxAttributeOrder;
+  //   if (order == "object_first") {
+  //     var object_entity = 'first_entity';
+  //     var value_entity = 'second_entity';
+  //   } else {
+  //     var object_entity = 'second_entity';
+  //     var value_entity = 'first_entity';
+  //   }
+  //   var object_element = Blockly.JavaScript.valueToCode(block, object_entity, Blockly.JavaScript.ORDER_ATOMIC);
+  //   var value_element = Blockly.JavaScript.valueToCode(block, value_entity, Blockly.JavaScript.ORDER_ATOMIC);
+  //   var code = object_element + '[' + attributeName + '->' + value_element + ']';
+  //   return code;
+  // }
+
+  // Blockly.JavaScript['category_weight'] = function(block) {
+  //   var number_weight = block.getFieldValue('weight');
+  //   var code = '// Not Implemented in Flora-2';
+  //   // TODO: Figure out how to represent this in the Flora-2 encoding, if at all.
+  //   return code;
+  // };
+  
+// This file sets out how to translate Blawx blocks into the s(CASP) language,
+// to be used in the s(CASP) version of decode.js
+
+
+Blockly.JavaScript['declare_type'] = function(block) {
+  var text_type_name = block.getFieldValue('type_name');
+  var code = "#pred " + text_type_name + "(A) :: '@(A) is in the category " + text_type_name + "'"
+  return code;
+};
+
+Blockly.JavaScript['declare_type_is_type'] = function(block) {
+  var value_first_type = Blockly.JavaScript.valueToCode(block, 'first_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_second_type = Blockly.JavaScript.valueToCode(block, 'second_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = value_first_type + "(A) :- " + value_second_type + "(A)";
+  return code;
+};
+
+Blockly.JavaScript['entity_declaration'] = function(block) {
+  var text_entity_name = block.getFieldValue('entity_name');
+  var code = "";
+  return code;
+};
+
+Blockly.JavaScript['entity_is_type'] = function(block) {
+  var value_entity_name = Blockly.JavaScript.valueToCode(block, 'entity name', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_type_name = Blockly.JavaScript.valueToCode(block, 'type name', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = value_type_name + "(" + value_entity_name + ")";
+  return code;
+};
+
+Blockly.JavaScript['rule'] = function(block) {
+  var text_rule_name = block.getFieldValue('rule_name');
+  var statements_conclusion = Blockly.JavaScript.statementToCode(block, 'conclusion');
+  var code = "";
+  if (text_rule_name) {
+      code += '%@{' + text_rule_name.replace(/ /g,"_") + "}\n";
   }
-  
-  Blockly.JavaScript['category_selector'] = function(block) {
-    var code = block.toString();
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  var currentBlock = this.getInputTargetBlock('conclusion');
+  while (currentBlock) {
+    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    code += codeForBlock;
+    currentBlock = currentBlock.getNextBlock();
+    if (currentBlock) {
+        code += ',\n';
+    }
   }
-  
-  Blockly.JavaScript['attribute_selector'] = function(block) {
-    var value_entity = Blockly.JavaScript.valueToCode(block, 'entity', Blockly.JavaScript.ORDER_ATOMIC);
-    var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-    var attributeName = block.getFieldValue('attributeName');
-    var code = value_entity + '[' + attributeName + '->' + value + ']';
-    return code;
-  }
-  
-  Blockly.JavaScript['conjunction'] = function(block) {
-    var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
-    var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
-    var code = statements_first_statement + ',\n' + statements_second_statement;
-    return code;
-  };
-  
-  Blockly.JavaScript['disjunction'] = function(block) {
-    var code = "((\n";
-    var currentBlock = this.getInputTargetBlock('first_statement');
-    while (currentBlock) {
-        var codeForBlock = getCodeForSingleBlock(currentBlock);
-        code += codeForBlock;
-        currentBlock = currentBlock.getNextBlock();
-        if (currentBlock) {
-            code += ",\n";
-        } else {
-            code += "\n";
-        }
-    }
-    code += ");(";
-    var currentBlock = this.getInputTargetBlock('second_statement');
-    while (currentBlock) {
-        var codeForBlock = getCodeForSingleBlock(currentBlock);
-        code += codeForBlock;
-        currentBlock = currentBlock.getNextBlock();
-        if (currentBlock) {
-            code += ",\n";
-        } else {
-            code += "\n";
-        }
-    }
-    code += "))\n";
-    return code;
-  };
-  
-  Blockly.JavaScript['negation'] = function(block) {
-    var code = '\\neg (';
-    var currentBlock = this.getInputTargetBlock('NAME');
-    while (currentBlock) {
-        var codeForBlock = getCodeForSingleBlock(currentBlock);
-        code += codeForBlock;
-        currentBlock = currentBlock.getNextBlock();
-        if (currentBlock) {
-            code += ",\n";
-        } else {
-            code += "\n";
-        }
-    }
-    code += ")";
-    return code;};
-  
-  Blockly.JavaScript['fact'] = function(block) {
-    var code = '';
-    var currentBlock = this.getInputTargetBlock('statement');
-    while (currentBlock) {
-      var codeForBlock = getCodeForSingleBlock(currentBlock);
-      code += codeForBlock + '.\n';
-      currentBlock = currentBlock.getNextBlock();
-    }
-    return code;
-  };
-  
-  Blockly.JavaScript['query'] = function(block) {
-    var code = '?- '
-    var currentBlock = this.getInputTargetBlock('query');
-    while (currentBlock) {
-        var codeForBlock = getCodeForSingleBlock(currentBlock);
-        code += codeForBlock;
-        currentBlock = currentBlock.getNextBlock();
-        if (currentBlock) {
-            code += ",\n";
-        } else {
-            code += ".\n";
-        }
-    }
-    // Flora-2 gets confused if queries are more than one line.
-    onelinecode = code.replace(/\r?\n|\r/g, "");
-    return onelinecode;
-  };
-  
-  Blockly.JavaScript['naf_negation'] = function(block) {
-    var code = '\\naf (';
-    var currentBlock = this.getInputTargetBlock('NAME');
-    while (currentBlock) {
-        var codeForBlock = getCodeForSingleBlock(currentBlock);
-        code += codeForBlock;
-        currentBlock = currentBlock.getNextBlock();
-        if (currentBlock) {
-            code += ",\n";
-        } else {
-            code += "\n";
-        }
-    }
-    code += ")";
-    return code;
-  };
-  
-  Blockly.JavaScript['entity_identity'] = function(block) {
-    var value_first_entity = Blockly.JavaScript.valueToCode(block, 'first_entity', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_entity = Blockly.JavaScript.valueToCode(block, 'second_entity', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_entity + ':=0=:' + value_second_entity;
-    return code;
-  };
-  
-  Blockly.JavaScript['attribute_declaration'] = function(block) {
-    var text_attribute_name = block.getFieldValue('attribute_name');
-    var value_attribute_name = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name.replace(/ /g,"_") + '=>' + value_attribute_name;
-    return code;
-  };
-  
-  Blockly.JavaScript['implication'] = function(block) {
-    var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
-    var dropdown_implication_type = block.getFieldValue('implication type');
-    var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
-    var code = statements_first_statement + dropdown_implication_type + statements_second_statement;
-    return code;
-  };
-  
-  Blockly.JavaScript['quantifier'] = function(block) {
-    var dropdown_quantifier_type = block.getFieldValue('quantifier_type');
-    var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = dropdown_quantifier_type + '(' + value_name + ')^(';
-    var statements_predicate_statement = Blockly.JavaScript.statementToCode(block, 'predicate_statement');
-    var currentBlock = this.getInputTargetBlock('predicate_statement');
-    while (currentBlock) {
-        var codeForBlock = getCodeForSingleBlock(currentBlock);
-        code += codeForBlock;
-        currentBlock = currentBlock.getNextBlock();
-        if (currentBlock) {
-            code += ",\n";
-        } else {
-            code += "\n";
-        }
-    }
-    code += ')';
-    return code;
-  };
-  
-  Blockly.JavaScript['override'] = function(block) {
-    var text_first_rule = block.getFieldValue('first_rule');
-    var text_second_rule = block.getFieldValue('second_rule');
-    var code = '\\overrides(' + text_first_rule + ", " + text_second_rule +").\n";
-    return code;
-  };
-  
-  Blockly.JavaScript['declare_type_with_attributes'] = function(block) {
-    var value_type = Blockly.JavaScript.valueToCode(block, 'type', Blockly.JavaScript.ORDER_ATOMIC);
-    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-    var code = value_type + '[|';
-    var currentBlock = this.getInputTargetBlock('NAME');
-    while (currentBlock) {
-      var codeForBlock = getCodeForSingleBlock(currentBlock);
-      code += codeForBlock;
-      currentBlock = currentBlock.getNextBlock();
-      if (currentBlock.type == "custom_attribute_declaration") {
-        currentBlock = currentBlock.getNextBlock();
-        // Skip custom attribute declarations of which there can only
-        // be one in a row.
-      }
-      if (currentBlock) {
-          code += ', ';
-      }
-    }
-    code += '|]';
-    return code;
-  };
-  
-  Blockly.JavaScript['boolean_datatype'] = function(block) {
-    var code = "\\boolean";
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-  
-  Blockly.JavaScript['number_datatype'] = function(block) {
-    var code = '\\integer';
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-  
-  Blockly.JavaScript['string_datatype'] = function(block) {
-    var code = '\\string';
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-  
-  Blockly.JavaScript['comparitor'] = function(block) {
-    var value_first_value = Blockly.JavaScript.valueToCode(block, 'first_value', Blockly.JavaScript.ORDER_ATOMIC);
-    var dropdown_comparitor = block.getFieldValue('comparitor');
-    var value_second_value = Blockly.JavaScript.valueToCode(block, 'second_value', Blockly.JavaScript.ORDER_ATOMIC);
-    var new_comparitor = ''
-    switch (dropdown_comparitor) {
-      case 'lt':
-        new_comparitor = '<';
-        break;
-      case 'lte':
-        new_comparitor = '<=';
-        break;
-      case 'gt':
-        new_comparitor = '>';
-        break;
-      case 'gte':
-        new_comparitor = '>=';
-        break;
-      case 'eq':
-        new_comparitor = '==';
-        break;
-      case 'neq':
-        new_comparitor = '!=';
-        break;
-      case 'nid':
-        new_comparitor = "!==";
-        break;
-      default:
-        new_comparitor = "not implemented";
-    }
-    var code = value_first_value + new_comparitor + value_second_value;
-    return code;
-  };
-  
-  Blockly.JavaScript['assignment'] = function(block) {
-    var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_variable + "=" + value_value;
-    return code;
-  };
-  
-  Blockly.JavaScript['aggregate_statement'] = function(block) {
-    var dropdown_aggregation_operation = block.getFieldValue('aggregation_operation');
-    var value_aggregate_variable = Blockly.JavaScript.valueToCode(block, 'aggregate_variable', Blockly.JavaScript.ORDER_ATOMIC);
-    //var statements_aggregate_conditions = Blockly.JavaScript.statementToCode(block, 'aggregate_conditions');
-    var code = dropdown_aggregation_operation + '{' + value_aggregate_variable + '|';
-    var currentBlock = this.getInputTargetBlock('aggregate_conditions');
-    while (currentBlock) {
-      var codeForBlock = getCodeForSingleBlock(currentBlock);
-      code += codeForBlock;
-      currentBlock = currentBlock.getNextBlock();
-      if (currentBlock) {
-          code += ', ';
-      }
-    }
-    code += '}'
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-  
-  Blockly.JavaScript['math_operator'] = function(block) {
-    var value_left_value = Blockly.JavaScript.valueToCode(block, 'left_value', Blockly.JavaScript.ORDER_ATOMIC);
-    var dropdown_operator = block.getFieldValue('operator');
-    var value_right_value = Blockly.JavaScript.valueToCode(block, 'right_value', Blockly.JavaScript.ORDER_ATOMIC);
-    switch(dropdown_operator) {
-      case "add":
-        var operator = "+";
-        break;
-      case "subtract":
-        var operator = "-";
-        break;
-      case "multiply":
-        var operator = "*";
-        break;
-      case "divide":
-        var operator = "/";
-        break;
-      default:
-        var operator = "not implemented";
-    }
-    var code = value_left_value + operator + value_right_value;
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-  
-  Blockly.JavaScript['import_ruleset'] = function(block) {
-    var text_ruleset_uri = block.getFieldValue('uri');
-    var code = '';
-    return code;
-  };
-
-  Blockly.JavaScript['data_property'] = function(block) {
-    var value_subject = Blockly.JavaScript.valueToCode(block, 'subject', Blockly.JavaScript.ORDER_ATOMIC);
-    var text_predicate = block.getFieldValue('predicate');
-    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_subject + '[' + text_predicate + '->' + value_object + ']';
-    return code;
-  };
-
-  Blockly.JavaScript['data_dictionary'] = function(block) {
-    var text_dictionary_name = block.getFieldValue('dictionary_name');
-    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-    var code = '';
-    // Add the starter code.
-    code += text_dictionary_name + "[";
-    // Add each of the sub-elements.
-    var currentBlock = this.getInputTargetBlock('NAME');
-    while (currentBlock) {
-      var codeForBlock = getCodeForSingleBlock(currentBlock);
-      code += codeForBlock;
-      currentBlock = currentBlock.getNextBlock();
-      if (currentBlock) {
-          code += ', ';
-      }
-    }
-    // Add the closer code
-    code += "]";
-    return code;
-  };
-  
-  Blockly.JavaScript['kvp_basic'] = function(block) {
-    var text_key = block.getFieldValue('key');
-    var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_key + ' -> ' + value_value;
-    return code;
-  };
-  
-  Blockly.JavaScript['data_dictionary_sub'] = function(block) {
-    var text_dictionary_name = block.getFieldValue('dictionary_name');
-    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-    var code = '';
-    // Add starter code
-    code += text_dictionary_name + " -> \\#[";
-    // Go through the sub-elements
-    var currentBlock = this.getInputTargetBlock('NAME');
-    while (currentBlock) {
-      var codeForBlock = getCodeForSingleBlock(currentBlock);
-      code += codeForBlock;
-      currentBlock = currentBlock.getNextBlock();
-      if (currentBlock) {
-          code += ', ';
-      }
-    }
-    // Add closer code
-    code += "]";
-    return code;
-  };
-
-  Blockly.JavaScript['calculation'] = function(block) {
-    var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_variable + " \\is " + value_calculation;
-    return code;
-  };
-
-  Blockly.JavaScript['boolean_value'] = function(block) {
-    var dropdown_value = block.getFieldValue('value');
-    var code = "";
-    if (dropdown_value == "true") {
-      code = "\\true";
-    }
-    if (dropdown_value == "false") {
-      code = "\\false";
-    }
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-
-  Blockly.JavaScript['datetime'] = function(block) {
-    var number_year = block.getFieldValue('year');
-    var number_month = block.getFieldValue('month');
-    var number_day = block.getFieldValue('day');
-    var number_hours = block.getFieldValue('hours');
-    var number_minutes = block.getFieldValue('minutes');
-    var number_seconds = block.getFieldValue('seconds');
-    var dropdown_daypart = block.getFieldValue('daypart');
-    if (dropdown_daypart == "pm") {
-      number_hours += 12;
-    }
-    var code = '"' + number_year + '-' + number_month + '-' + number_day + 'T';
-    code += number_hours + ':' + number_minutes + ':' + number_seconds + '"^^\\dateTime';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
-  };
-
-  Blockly.JavaScript['date'] = function(block) {
-    var number_year = block.getFieldValue('year');
-    var number_month = block.getFieldValue('month');
-    var number_day = block.getFieldValue('day');
-    var code = '"' + number_year + "-" + number_month + "-" + number_day + '"^^\\date';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
-  };
-
-  Blockly.JavaScript['time'] = function(block) {
-    var number_hours = block.getFieldValue('hours');
-    var number_minutes = block.getFieldValue('minutes');
-    var number_seconds = block.getFieldValue('seconds');
-    var dropdown_daypart = block.getFieldValue('daypart');
-    if (dropdown_daypart == "pm") {
-      number_hours += 12;
-    }
-    var code = '"' + number_hours + ':' + number_minutes + ':' + number_seconds + '"^^\\time';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
-  };
-
-  Blockly.JavaScript['duration'] = function(block) {
-    var dropdown_sign = block.getFieldValue('sign');
-    var number_years = block.getFieldValue('years');
-    var number_months = block.getFieldValue('months');
-    var number_days = block.getFieldValue('days');
-    var number_hours = block.getFieldValue('hours');
-    var number_minutes = block.getFieldValue('minutes');
-    var number_seconds = block.getFieldValue('seconds');
-    var sign = '';
-    if (dropdown_sign == 'neg') {
-      sign = '-';
-    }
-    var code = '"' + sign + 'P' + number_years + 'Y' + number_months + 'M';
-    code += number_days + 'DT' + number_hours + 'H' + number_minutes + 'M' + number_seconds + 'S"^^\\duration'; 
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
-  };
-
-  Blockly.JavaScript['duration_datatype'] = function(block) {
-    var code = "\\duration";
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-
-  Blockly.JavaScript['datetime_datatype'] = function(block) {
-    var code = "\\dateTime";
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-
-  Blockly.JavaScript['time_datatype'] = function(block) {
-    var code = "\\time";
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-
-  Blockly.JavaScript['date_datatype'] = function(block) {
-    var code = "\\date";
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-
-  Blockly.JavaScript['date_before'] = function(block) {
-    var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_date + '[lessThan(' + value_second_date + ')]@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['date_before_or_eq'] = function(block) {
-    var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_date + '[lessEq(' + value_second_date + ')]@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['time_before_or_eq'] = function(block) {
-    var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_time + '[lessEq(' + value_second_time + ')]@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['time_before'] = function(block) {
-    var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_time + '[lessThan(' + value_second_time + ')]@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['time_plus_dur'] = function(block) {
-    var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_time + '[add(' + value_duration + ')->' + value_output + ']@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['date_plus_dur'] = function(block) {
-    var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_date + '[add(' + value_duration + ')->' + value_output + ']@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['time_minus_time'] = function(block) {
-    var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_time + '[minus(' + value_second_time + ')->' + value_output + ']@datemin';
-    return code;
-  };
-  
-  Blockly.JavaScript['date_minus_date'] = function(block) {
-    var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_date + '[minus(' + value_second_date + ')->' + value_output + ']@datemin';
-    return code;
-  };
-  
-  Blockly.JavaScript['concat_text'] = function(block) {
-    var value_first_text = Blockly.JavaScript.valueToCode(block, 'first_text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_second_text = Blockly.JavaScript.valueToCode(block, 'second_text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_result = Blockly.JavaScript.valueToCode(block, 'result', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_text + '[concat(' + value_second_text + ')->' + value_result + ']@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['length_text'] = function(block) {
-    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_text + '[length->' + value_name + ']@\\basetype';
-    // TODO Fix Field naming
-    return code;
-  };
-  
-  Blockly.JavaScript['toupper_text'] = function(block) {
-    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_text + '[toUpper->' + value_output + ']@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['tolower_text'] = function(block) {
-    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_text + '[toLower->' + value_output + ']@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['startswith_text'] = function(block) {
-    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_text + '[startsWith(' + value_target + ')]@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['endswith_text'] = function(block) {
-    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_text + '[endsWith(' + value_target + ')]@\\basetype';
-    return code;
-  };
-  
-  Blockly.JavaScript['substring_text'] = function(block) {
-    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_start = Blockly.JavaScript.valueToCode(block, 'start', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_length = Blockly.JavaScript.valueToCode(block, 'length', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_text + '[substring(' + value_start + ',' + value_length + ')->' + value_output + ']@\\basetype';
-    return code;
-  };
-
-  Blockly.JavaScript['blawx_string'] = function(block) {
-    var text_string = block.getFieldValue('string');
-    var code = '"' + text_string + '"^^\\string';
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-
-  Blockly.JavaScript['cardinality_up_to'] = function(block) {
-    var text_attribute_name = block.getFieldValue('attribute_name');
-    var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
-    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + "{0.." + number_maximum_cardinality + "} =>" + value_attribute_type;
-    return code;
-  };
-  
-  Blockly.JavaScript['cardinality_or_more'] = function(block) {
-    var text_attribute_name = block.getFieldValue('attribute_name');
-    var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
-    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + "{" + number_minimum_cardinality + "..*} =>" + value_attribute_type;
-    return code;
-  };
-  
-  Blockly.JavaScript['cardinality_exactly'] = function(block) {
-    var text_attribute_name = block.getFieldValue('attribute_name');
-    var number_cardinality = block.getFieldValue('cardinality');
-    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + "{" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
-    return code;
-  };
-  
-  Blockly.JavaScript['cardinality_between'] = function(block) {
-    var text_attribute_name = block.getFieldValue('attribute_name');
-    var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
-    var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
-    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + "{" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
-    return code;
-  };
-  
-  Blockly.JavaScript['cardinality_any'] = function(block) {
-    var text_attribute_name = block.getFieldValue('attribute_name');
-    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + "=>" + value_attribute_type;
-    return code;
-  };
-
-  Blockly.JavaScript['unnamed_variable'] = function(block) {
-    var code = '?_';
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-  
-  Blockly.JavaScript['silent_variable_selector'] = function(block) {
-    var text_variable_selected = block.getFieldValue('variable_selected');
-    var code = '?_' + text_variable_selected;
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-
-  Blockly.JavaScript['new_object_of_type'] = function(block) {
-    var text_object_name = block.getFieldValue('object_name');
-    var category_name = block.getFieldValue('category_name');
-    var code = text_object_name + ':' + category_name;
-    return code;
-  };
-
-  Blockly.JavaScript['custom_attribute_declaration'] = function(block) {
-    var dropdown_order = block.getFieldValue('order');
-    var text_prefix = block.getFieldValue('prefix');
-    var text_infix = block.getFieldValue('infix');
-    var text_postfix = block.getFieldValue('postfix');
-    var code = '';
-    return code;
-  };
-
-  Blockly.JavaScript['custom_attribute_selector'] = function(block) {
-    var attributeName = block.blawxAttributeName;
-    var order = block.blawxAttributeOrder;
-    if (order == "object_first") {
-      var object_entity = 'first_entity';
-      var value_entity = 'second_entity';
+  code += ' :-\n';
+  currentBlock = this.getInputTargetBlock('conditions');
+  while (currentBlock) {
+    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    code += "  " + codeForBlock;
+    currentBlock = currentBlock.getNextBlock();
+    if (currentBlock) {
+        code += ',\n';
     } else {
-      var object_entity = 'second_entity';
-      var value_entity = 'first_entity';
+        code += '.\n';
     }
-    var object_element = Blockly.JavaScript.valueToCode(block, object_entity, Blockly.JavaScript.ORDER_ATOMIC);
-    var value_element = Blockly.JavaScript.valueToCode(block, value_entity, Blockly.JavaScript.ORDER_ATOMIC);
-    var code = object_element + '[' + attributeName + '->' + value_element + ']';
-    return code;
   }
+  return code;
+};
 
-  Blockly.JavaScript['category_weight'] = function(block) {
-    var number_weight = block.getFieldValue('weight');
-    var code = '// Not Implemented in Flora-2';
-    // TODO: Figure out how to represent this in the Flora-2 encoding, if at all.
-    return code;
-  };
-  
+Blockly.JavaScript['variable_selector'] = function(block) {
+  var text_variable_selected = block.getFieldValue('variable_selected');
+  var code = text_variable_selected;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['object_selector'] = function(block) {
+  var code = block.toString();
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+}
+
+Blockly.JavaScript['category_selector'] = function(block) {
+  var code = block.toString();
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+}
+
+Blockly.JavaScript['attribute_selector'] = function(block) {
+  var value_entity = Blockly.JavaScript.valueToCode(block, 'entity', Blockly.JavaScript.ORDER_ATOMIC);
+  var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  var attributeName = block.getFieldValue('attributeName');
+  var code = attributeName + "(" + value_entity + "," + value + ")";
+  return code;
+}
+
+Blockly.JavaScript['conjunction'] = function(block) {
+  var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
+  var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
+  var code = statements_first_statement + ',\n' + statements_second_statement;
+  return code;
+};
+
+//   Blockly.JavaScript['disjunction'] = function(block) {
+//     var code = "((\n";
+//     var currentBlock = this.getInputTargetBlock('first_statement');
+//     while (currentBlock) {
+//         var codeForBlock = getCodeForSingleBlock(currentBlock);
+//         code += codeForBlock;
+//         currentBlock = currentBlock.getNextBlock();
+//         if (currentBlock) {
+//             code += ",\n";
+//         } else {
+//             code += "\n";
+//         }
+//     }
+//     code += ");(";
+//     var currentBlock = this.getInputTargetBlock('second_statement');
+//     while (currentBlock) {
+//         var codeForBlock = getCodeForSingleBlock(currentBlock);
+//         code += codeForBlock;
+//         currentBlock = currentBlock.getNextBlock();
+//         if (currentBlock) {
+//             code += ",\n";
+//         } else {
+//             code += "\n";
+//         }
+//     }
+//     code += "))\n";
+//     return code;
+//   };
+
+//   Blockly.JavaScript['negation'] = function(block) {
+//     var code = '\\neg (';
+//     var currentBlock = this.getInputTargetBlock('NAME');
+//     while (currentBlock) {
+//         var codeForBlock = getCodeForSingleBlock(currentBlock);
+//         code += codeForBlock;
+//         currentBlock = currentBlock.getNextBlock();
+//         if (currentBlock) {
+//             code += ",\n";
+//         } else {
+//             code += "\n";
+//         }
+//     }
+//     code += ")";
+//     return code;};
+
+Blockly.JavaScript['fact'] = function(block) {
+  var code = '';
+  var currentBlock = this.getInputTargetBlock('statement');
+  while (currentBlock) {
+    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    code += codeForBlock + '.\n';
+    currentBlock = currentBlock.getNextBlock();
+  }
+  return code;
+};
+
+Blockly.JavaScript['query'] = function(block) {
+  var code = '?- '
+  var currentBlock = this.getInputTargetBlock('query');
+  while (currentBlock) {
+      var codeForBlock = getCodeForSingleBlock(currentBlock);
+      code += codeForBlock;
+      currentBlock = currentBlock.getNextBlock();
+      if (currentBlock) {
+          code += ",\n";
+      } else {
+          code += ".\n";
+      }
+  }
+  // Reduce the query to a single line.
+  onelinecode = code.replace(/\r?\n|\r/g, "");
+  return onelinecode;
+};
+
+Blockly.JavaScript['naf_negation'] = function(block) {
+  var code = 'not (';
+  var currentBlock = this.getInputTargetBlock('NAME');
+  while (currentBlock) {
+      var codeForBlock = getCodeForSingleBlock(currentBlock);
+      code += codeForBlock;
+      currentBlock = currentBlock.getNextBlock();
+      if (currentBlock) {
+          code += ",\n";
+      } else {
+          code += "\n";
+      }
+  }
+  code += ")"
+  return code;
+};
+
+Blockly.JavaScript['entity_identity'] = function(block) {
+  var value_first_entity = Blockly.JavaScript.valueToCode(block, 'first_entity', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_second_entity = Blockly.JavaScript.valueToCode(block, 'second_entity', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = value_first_entity + ':=0=:' + value_second_entity;
+  return code;
+};
+
+Blockly.JavaScript['attribute_declaration'] = function(block) {
+  var text_attribute_name = block.getFieldValue('attribute_name');
+  var value_attribute_name = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = "";
+  return code;
+};
+
+Blockly.JavaScript['override'] = function(block) {
+  var text_first_rule = block.getFieldValue('first_rule');
+  var text_second_rule = block.getFieldValue('second_rule');
+  var code = 'overrides(' + text_first_rule + ",Conclusion1," + text_second_rule +",Conclusion2).\n";
+  code += "opposes(" + text_first_rule + ",Conclusion1," + text_second_rule +",Conclusion2).\n";
+  return code;
+};
+
+Blockly.JavaScript['declare_type_with_attributes'] = function(block) {
+  var value_type = Blockly.JavaScript.valueToCode(block, 'type', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  var code = value_type + '[|';
+  var currentBlock = this.getInputTargetBlock('NAME');
+  while (currentBlock) {
+    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    code += codeForBlock;
+    currentBlock = currentBlock.getNextBlock();
+    if (currentBlock.type == "custom_attribute_declaration") {
+      currentBlock = currentBlock.getNextBlock();
+      // Skip custom attribute declarations of which there can only
+      // be one in a row.
+    }
+    if (currentBlock) {
+        code += ', ';
+    }
+  }
+  code += '|]';
+  return "";
+};
+
+Blockly.JavaScript['boolean_datatype'] = function(block) {
+  var code = "\\boolean";
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['number_datatype'] = function(block) {
+  var code = '\\integer';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['string_datatype'] = function(block) {
+  var code = '\\string';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['comparitor'] = function(block) {
+  var value_first_value = Blockly.JavaScript.valueToCode(block, 'first_value', Blockly.JavaScript.ORDER_ATOMIC);
+  var dropdown_comparitor = block.getFieldValue('comparitor');
+  var value_second_value = Blockly.JavaScript.valueToCode(block, 'second_value', Blockly.JavaScript.ORDER_ATOMIC);
+  var new_comparitor = ''
+  switch (dropdown_comparitor) {
+    case 'lt':
+      new_comparitor = '<';
+      break;
+    case 'lte':
+      new_comparitor = '<=';
+      break;
+    case 'gt':
+      new_comparitor = '>';
+      break;
+    case 'gte':
+      new_comparitor = '>=';
+      break;
+    case 'eq':
+      new_comparitor = '==';
+      break;
+    case 'neq':
+      new_comparitor = '!=';
+      break;
+    case 'nid':
+      new_comparitor = "!==";
+      break;
+    default:
+      new_comparitor = "not implemented";
+  }
+  var code = value_first_value + new_comparitor + value_second_value;
+  return code;
+};
+
+Blockly.JavaScript['assignment'] = function(block) {
+  var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = value_variable + "=" + value_value;
+  return code;
+};
+
+Blockly.JavaScript['math_operator'] = function(block) {
+  var value_left_value = Blockly.JavaScript.valueToCode(block, 'left_value', Blockly.JavaScript.ORDER_ATOMIC);
+  var dropdown_operator = block.getFieldValue('operator');
+  var value_right_value = Blockly.JavaScript.valueToCode(block, 'right_value', Blockly.JavaScript.ORDER_ATOMIC);
+  switch(dropdown_operator) {
+    case "add":
+      var operator = "+";
+      break;
+    case "subtract":
+      var operator = "-";
+      break;
+    case "multiply":
+      var operator = "*";
+      break;
+    case "divide":
+      var operator = "/";
+      break;
+    default:
+      var operator = "not implemented";
+  }
+  var code = value_left_value + operator + value_right_value;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['import_ruleset'] = function(block) {
+  var text_ruleset_uri = block.getFieldValue('uri');
+  var code = '';
+  return code;
+};
+
+Blockly.JavaScript['data_property'] = function(block) {
+  var value_subject = Blockly.JavaScript.valueToCode(block, 'subject', Blockly.JavaScript.ORDER_ATOMIC);
+  var text_predicate = block.getFieldValue('predicate');
+  var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = value_subject + '[' + text_predicate + '->' + value_object + ']';
+  return code;
+};
+
+Blockly.JavaScript['data_dictionary'] = function(block) {
+  var text_dictionary_name = block.getFieldValue('dictionary_name');
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  var code = '';
+  // Add the starter code.
+  code += text_dictionary_name + "[";
+  // Add each of the sub-elements.
+  var currentBlock = this.getInputTargetBlock('NAME');
+  while (currentBlock) {
+    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    code += codeForBlock;
+    currentBlock = currentBlock.getNextBlock();
+    if (currentBlock) {
+        code += ', ';
+    }
+  }
+  // Add the closer code
+  code += "]";
+  return code;
+};
+
+Blockly.JavaScript['kvp_basic'] = function(block) {
+  var text_key = block.getFieldValue('key');
+  var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = text_key + ' -> ' + value_value;
+  return code;
+};
+
+Blockly.JavaScript['data_dictionary_sub'] = function(block) {
+  var text_dictionary_name = block.getFieldValue('dictionary_name');
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  var code = '';
+  // Add starter code
+  code += text_dictionary_name + " -> \\#[";
+  // Go through the sub-elements
+  var currentBlock = this.getInputTargetBlock('NAME');
+  while (currentBlock) {
+    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    code += codeForBlock;
+    currentBlock = currentBlock.getNextBlock();
+    if (currentBlock) {
+        code += ', ';
+    }
+  }
+  // Add closer code
+  code += "]";
+  return code;
+};
+
+Blockly.JavaScript['calculation'] = function(block) {
+  var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = value_variable + " is " + value_calculation;
+  return code;
+};
+
+Blockly.JavaScript['boolean_value'] = function(block) {
+  var dropdown_value = block.getFieldValue('value');
+  var code = "";
+  if (dropdown_value == "true") {
+    code = "true";
+  }
+  if (dropdown_value == "false") {
+    code = "false";
+  }
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['blawx_string'] = function(block) {
+  var text_string = block.getFieldValue('string');
+  var code = '"' + text_string + '"';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['cardinality_up_to'] = function(block) {
+  var text_attribute_name = block.getFieldValue('attribute_name');
+  var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
+  var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = text_attribute_name + "{0.." + number_maximum_cardinality + "} =>" + value_attribute_type;
+  return "";
+};
+
+Blockly.JavaScript['cardinality_or_more'] = function(block) {
+  var text_attribute_name = block.getFieldValue('attribute_name');
+  var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
+  var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = text_attribute_name + "{" + number_minimum_cardinality + "..*} =>" + value_attribute_type;
+  return "";
+};
+
+Blockly.JavaScript['cardinality_exactly'] = function(block) {
+  var text_attribute_name = block.getFieldValue('attribute_name');
+  var number_cardinality = block.getFieldValue('cardinality');
+  var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = text_attribute_name + "{" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
+  return "";
+};
+
+Blockly.JavaScript['cardinality_between'] = function(block) {
+  var text_attribute_name = block.getFieldValue('attribute_name');
+  var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
+  var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
+  var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = text_attribute_name + "{" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
+  return "";
+};
+
+Blockly.JavaScript['cardinality_any'] = function(block) {
+  var text_attribute_name = block.getFieldValue('attribute_name');
+  var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = text_attribute_name + "=>" + value_attribute_type;
+  return "";
+};
+
+Blockly.JavaScript['unnamed_variable'] = function(block) {
+  var code = '_';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['silent_variable_selector'] = function(block) {
+  var text_variable_selected = block.getFieldValue('variable_selected');
+  var code = '_' + text_variable_selected;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['new_object_of_type'] = function(block) {
+  var text_object_name = block.getFieldValue('object_name');
+  var category_name = block.getFieldValue('category_name');
+  var code = category_name + "(" + text_object_name + ")";
+  return code;
+};
+
+Blockly.JavaScript['custom_attribute_declaration'] = function(block) {
+  var dropdown_order = block.getFieldValue('order');
+  var text_prefix = block.getFieldValue('prefix');
+  var text_infix = block.getFieldValue('infix');
+  var text_postfix = block.getFieldValue('postfix');
+  var code = '';
+  return code;
+};
+
+Blockly.JavaScript['custom_attribute_selector'] = function(block) {
+  var attributeName = block.blawxAttributeName;
+  var order = block.blawxAttributeOrder;
+  if (order == "object_first") {
+    var object_entity = 'first_entity';
+    var value_entity = 'second_entity';
+  } else {
+    var object_entity = 'second_entity';
+    var value_entity = 'first_entity';
+  }
+  var object_element = Blockly.JavaScript.valueToCode(block, object_entity, Blockly.JavaScript.ORDER_ATOMIC);
+  var value_element = Blockly.JavaScript.valueToCode(block, value_entity, Blockly.JavaScript.ORDER_ATOMIC);
+  var code = attributeName + "(" + object_element + ',' + value_element + ')';
+  return code;
+}
+
+
   /**
    * Generate code for the specified block but not following blocks.
    * @param {Blockly.Block} block The block to generate code for.
