@@ -3767,7 +3767,8 @@ Blockly.JavaScript['declare_type_with_attributes'] = function(block) {
     var codeForBlock = getCodeForSingleBlock(currentBlock);
     code += codeForBlock;
     currentBlock = currentBlock.getNextBlock();
-    if (currentBlock.type == "custom_attribute_declaration") {
+
+    if (currentBlock && currentBlock.type == "custom_attribute_declaration") {
       currentBlock = currentBlock.getNextBlock();
       // Skip custom attribute declarations of which there can only
       // be one in a row.
